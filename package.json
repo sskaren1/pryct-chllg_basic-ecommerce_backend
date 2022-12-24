@@ -1,0 +1,22 @@
+{
+  "name": "basic-ecommerce_backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sskaren1",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.11.1",
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
