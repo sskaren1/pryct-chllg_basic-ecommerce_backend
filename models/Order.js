@@ -18,7 +18,7 @@ const OrderSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
-    codigo: {
+    code: {
         type: String,
         required: true,
     },
@@ -26,7 +26,7 @@ const OrderSchema = mongoose.Schema({
         type: Date,
         required: true,
     },
-    estado: {
+    status: {
         type: String,
         default: "Pendiente"
     }
