@@ -2,11 +2,29 @@ import { gql } from "apollo-server";
 
 // schema
 export const typeDefs = gql`
-    type Producto {
-        nombre: String
-        precio: String
+    type Product{
+        id: ID
+        name: String
+        price: Float
+        image: String
     }
+
+    input ProductInput {
+        name: String!
+        price: Float!
+        image: String!
+    }
+
     type Query{
-        obtenerProductos : [Producto ]
+        #Products
+        getProducts : [Product]
+        getProduct(id: ID!): Product
+    }
+
+    type Mutation {
+        #Products
+        newProduct(input: ProductInput) : Product
+        updateProduct( id: ID!, input: ProductInput) : Product
+        deleteProduct( id:ID! ) : String
     }
 `;
