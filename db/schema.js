@@ -58,6 +58,8 @@ export const typeDefs = gql`
         # Orders
         getOrders : [Order]
         getOrder(id: ID!) : Order
+        # Advanced searches
+        searchProduct(text: String!) : [Product]
     }
 
     type Mutation {

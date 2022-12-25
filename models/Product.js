@@ -21,6 +21,9 @@ const ProductSchema = mongoose.Schema({
     timestamps: true //crea dos columnas más, una de creado y otra de actualizado
 });
 
+// Search product by name
+ProductSchema.index({ name: 'text' });
+
 const Product = mongoose.model("Product", ProductSchema);
 
 export default Product;

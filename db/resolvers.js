@@ -42,6 +42,12 @@ export const resolvers = {
             // return the result
             return pedido;
         }, 
+        // Advanced searches
+        searchProduct: async(_, { text }) => {
+            const products = await Product.find({ $text: { $search: text  } }).limit(10) // limit(10) to bring a maximum of 10
+
+            return products;
+        }
     },
     Mutation: {
         // Products
@@ -114,6 +120,6 @@ export const resolvers = {
             // remove from database
             await Order.findOneAndDelete({_id: id});
             return "Pedido Eliminado"
-        }
+        }        
     }
 }
