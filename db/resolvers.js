@@ -1,5 +1,6 @@
 // import models
 import Product from './../models/Product.js';
+import Order from './../models/Order.js';
 
 // resolvers
 export const resolvers = {
@@ -21,7 +22,26 @@ export const resolvers = {
                 throw new Error('Producto no encontrado');
             }
             return product;
-        }
+        },
+        // Orders
+        getOrders: async () => {
+            try {
+                const orders = await Order.find({});
+                return orders;
+            } catch (error) {
+                console.log(error);
+            }
+        }, 
+        getOrder: async(_, {id}) => {
+            // Whether the order exists or not
+            const order = await Order.findById(id);
+            if(!order) {
+                throw new Error('Pedido no encontrado');
+            }       
+
+            // return the result
+            return pedido;
+        }, 
     },
     Mutation: {
         // Products
@@ -58,13 +78,42 @@ export const resolvers = {
                 throw new Error('Producto no encontrado');
             }
 
-            // delete
+            // remove from database
             await Product.findOneAndDelete({_id : id});
 
             return "Producto Eliminado";
+        },
+        // Orders
+        newOrder: async(_, {input}) => {
+             // Create a new order
+             const newOrder = new Order(input);
+
+             // Save to database
+            const result = await newOrder.save();
+
+            return result;
+        },
+        updateOrder: async(_, {id, input}) => {
+            // check if the order exists
+            const order = await Order.findById(id);
+            if(!order) {
+                throw new Error('El pedido no existe');
+            }
+
+            // store in database
+            const result = await Order.findOneAndUpdate({_id: id}, input, { new: true });
+            return result;
+        },
+        deleteOrder: async (_, {id}, ctx) => {
+            // check if the order exists
+            const order = await Order.findById(id);
+            if(!order) {
+                throw new Error('El pedido no existe');
+            }
+
+            // remove from database
+            await Order.findOneAndDelete({_id: id});
+            return "Pedido Eliminado"
         }
-
-        
-
     }
 }

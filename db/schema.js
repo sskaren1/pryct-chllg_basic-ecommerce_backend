@@ -55,6 +55,9 @@ export const typeDefs = gql`
         # Products
         getProducts : [Product]
         getProduct(id: ID!): Product
+        # Orders
+        getOrders : [Order]
+        getOrder(id: ID!) : Order
     }
 
     type Mutation {
@@ -65,6 +68,7 @@ export const typeDefs = gql`
 
         # Orders
         newOrder( input: OrderInput) : Order
-
+        updateOrder(id: ID!, input: OrderInput ) : Order
+        deleteOrder(id: ID!) : String
     }
 `;
