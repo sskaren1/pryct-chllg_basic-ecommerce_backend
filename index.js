@@ -18,6 +18,6 @@ const server = new ApolloServer({
     resolvers
 });
 // arranzar el servidor
-server.listen().then(({url}) => {
-    console.log(`Servidor listo en la URL ${url}`);
-})
+server.listen(process.env.PORT || 3000, () =>
+    console.log("Server on port", process.env.PORT || 3000)
+);
